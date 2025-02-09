@@ -1,0 +1,44 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 16,
+    "fields": {
+      "name": "Kill Team",
+      "description": "Настольная игра во вселенной Warhammer 40000",
+      "image": "",
+      "price": 10000,
+      "created_at": "2025-02-08",
+      "updated_at": "2025-02-08",
+      "category": 4,
+      "publication_status": false
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 17,
+    "fields": {
+      "name": "Kill Team",
+      "description": "Настольная игра во вселенной Warhammer 40000",
+      "image": "",
+      "price": 10000,
+      "created_at": "2025-02-08",
+      "updated_at": "2025-02-08",
+      "category": 4,
+      "publication_status": false
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 18,
+    "fields": {
+      "name": "Dungeon Master",
+      "description": "Настольная игра во вселенной DnD",
+      "image": "",
+      "price": 5000,
+      "created_at": "2025-02-08",
+      "updated_at": "2025-02-08",
+      "category": 4,
+      "publication_status": false
+    }
+  }
+]
