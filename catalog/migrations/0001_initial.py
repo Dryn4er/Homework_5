@@ -23,18 +23,21 @@ class Migration(migrations.Migration):
                         verbose_name="ID",
                     ),
                 ),
-                ("name", models.CharField(max_length=100)),
+                (
+                    "name",
+                    models.CharField(max_length=150, verbose_name="Название продукта"),
+                ),
                 (
                     "description",
                     models.TextField(
-                        blank=True, null=True, verbose_name="описание категории"
+                        blank=True, null=True, verbose_name="Описание продукта"
                     ),
                 ),
             ],
             options={
                 "verbose_name": "Категория",
                 "verbose_name_plural": "Категории",
-                "ordering": ["name"],
+                "ordering": ["name", "description"],
             },
         ),
         migrations.CreateModel(
@@ -51,54 +54,38 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "name",
-                    models.CharField(max_length=150, verbose_name="название продукта"),
+                    models.CharField(max_length=150, verbose_name="Название продукта"),
                 ),
                 (
                     "description",
                     models.TextField(
-                        blank=True, null=True, verbose_name="описание продукта"
+                        blank=True, null=True, verbose_name="Описание продукта"
                     ),
                 ),
                 (
                     "image",
                     models.ImageField(
-                        blank=True,
-                        null=True,
-                        upload_to="catalog/photo",
-                        verbose_name="изображение",
-                    ),
-                ),
-                ("price", models.IntegerField(verbose_name="цена за покупку")),
-                (
-                    "created_at",
-                    models.DateField(auto_now_add=True, verbose_name="дата создания"),
-                ),
-                (
-                    "updated_at",
-                    models.DateField(
-                        auto_now=True, verbose_name="дата последнего изменения"
-                    ),
-                ),
-                (
-                    "publication_status",
-                    models.BooleanField(
-                        default=False, verbose_name="статус публикации"
+                        blank=True, upload_to="", verbose_name="Изображение продукта"
                     ),
                 ),
                 (
                     "category",
-                    models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE,
-                        related_name="products",
-                        to="catalog.category",
+                    models.CharField(max_length=150, verbose_name="Категория продукта"),
+                ),
+                (
+                    "price",
+                    models.FloatField(
+                        help_text="Введите стоимость продукта",
+                        verbose_name="Стоимость продукта",
                     ),
                 ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
             ],
             options={
                 "verbose_name": "Продукт",
                 "verbose_name_plural": "Продукты",
-                "ordering": ["name", "price", "created_at", "category"],
-                "permissions": [("can_unpublish_product", "Can unpublish product")],
+                "ordering": ["name", "description", "category", "price"],
             },
         ),
     ]

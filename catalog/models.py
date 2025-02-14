@@ -1,48 +1,38 @@
 from django.db import models
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(
-        verbose_name="описание категории", blank=True, null=True
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Категория"
-        verbose_name_plural = "Категории"
-        ordering = ["name"]
-
-
 class Product(models.Model):
-    name = models.CharField(max_length=150, verbose_name="название продукта")
-    description = models.TextField(
-        verbose_name="описание продукта", blank=True, null=True
-    )
-    image = models.ImageField(
-        upload_to="catalog/photo", verbose_name="изображение", blank=True, null=True
-    )
-    price = models.IntegerField(verbose_name="цена за покупку")
-    created_at = models.DateField(verbose_name="дата создания", auto_now_add=True)
-    updated_at = models.DateField(
-        verbose_name="дата последнего изменения", auto_now=True
-    )
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, related_name="products"
-    )
-    publication_status = models.BooleanField(
-        default=False, verbose_name="статус публикации"
-    )
+    name = models.CharField(max_length=150, verbose_name="Название продукта")
+    description = models.TextField(verbose_name="Описание продукта", null=True, blank=True)
+    image = models.ImageField(verbose_name="Изображение продукта", blank=True)
+    category = models.CharField(max_length=150, verbose_name="Категория продукта")
+    price = models.FloatField(verbose_name="Стоимость продукта", help_text="Введите стоимость продукта")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    publication_status = models.BooleanField(default=False, blank=True, null=True, verbose_name="Статус публикации")
+
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.description}'
 
     class Meta:
-        verbose_name = "Продукт"
-        verbose_name_plural = "Продукты"
-        ordering = ["name", "price", "created_at", "category"]
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+        ordering = ['name', 'description', 'category', 'price']
         permissions = [
-            ("can_unpublish_product", "Can unpublish product"),
+            ('can_unpublish_product', 'Can unpublish product'),
+            ('can_delete_product', 'Can delete product'),
         ]
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=150, verbose_name="Название продукта")
+    description = models.TextField(verbose_name="Описание продукта", null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.name} {self.description}'
+
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+        ordering = ['name', 'description']
