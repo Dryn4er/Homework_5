@@ -8,7 +8,7 @@
     {% for product in products %}
     <div class="card-group">
         <div class="card">
-            <img src="{{ image | image_filter }}">
+            <img src="{{ product.image | image_filter }}">
             <div class="card-body">
                 <h5 class="card-title">{{ product.name }}</h5>
                 <p class="card-text">{{ product.description }}</p>
