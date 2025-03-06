@@ -50,7 +50,7 @@ class ProductListView(ListView):
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView, UserPassesTestMixin):
     model = Product
-    template_name = 'catalog/product_confirm_delete.html'
+    template_name = 'catalog/product_delete.html'
     success_url = reverse_lazy('catalog:product_list')
 
     def test_func(self):
