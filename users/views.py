@@ -19,6 +19,6 @@ class RegisterView(FormView):
     def send_welcome_email(self, user_email):
         subject = 'Добро пожаловать в наш сервис'
         message = 'Спасибо, что зарегистрировались в нашем сервисе!'
-        from_email = 'skystore.blog@mail.ru'
+        from_email = 'admin@mail.ru'
         recipient_list = [user_email]
         send_mail(subject, message, from_email, recipient_list)
