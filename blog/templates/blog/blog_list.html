@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+{% block title %}Список постов{% endblock %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Список постов</h1>
+</div>
+<a href="{% url 'myblog:blog_create' %}" class="btn btn-primary mb-3">Создать новый объект</a>
+<ul class="list-group">
+    {% for blog in blogs %}
+    <li class="list-group-item">
+        <a href="{% url 'myblog:blog_detail' blog.pk %}">{{ blog.title }}</a>
+        <a href="{% url 'myblog:blog_update' blog.pk %}" class="btn btn-sm btn-secondary ml-3">Редактировать</a>
+        <a href="{% url 'myblog:blog_delete' blog.pk %}" class="btn btn-sm btn-danger ml-1">Удалить</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

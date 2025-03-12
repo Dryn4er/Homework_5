@@ -1,0 +1,24 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Детали продукта{% endblock %}
+{% load my_tags %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Детали продукта</h1>
+</div>
+<div class="container mt-5">
+    <img src="{{ product.image | image_filter }}">
+    <h2>{{ product.name }}</h2>
+    <p>Категория: {{ product.category }}</p>
+    <p>Описание: {{ product.description|truncatechars:100 }}</p>
+    <p>Цена: {{ product.price }}</p>
+    <p>Дата создания: {{ product.created_at|date:"d M Y" }}</p>
+    <p>Дата обновления: {{ product.updated_at|date:"d M Y" }}</p>
+    <p>Статус публикации: {{ product.publication_status }}</p>
+    <p>Владелец: {{ product.owner }}</p>
+    <a href="{% url 'catalog:product_list' %}" class="btn btn-primary">Вернуться в каталог</a>
+    {% if perms.product.can_unpublish_product and perms.product.can_delete_product or user == product.owner %}
+    <a href="{% url 'catalog:product_update' product.pk %}" class="btn btn-secondary">Редактировать</a>
+    <a href="{% url 'catalog:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+    {% endif %}
+</div>
+{% endblock %}

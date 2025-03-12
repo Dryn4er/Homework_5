@@ -1,0 +1,10 @@
+{% extends 'catalog/base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<form method="post">
+    <h2>Авторизация</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+{% endblock %}

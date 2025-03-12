@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block title %}Детали поста{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>{{ blog.title }}</h2>
+    <p>Контент: {{ blog.content }}</p>
+    <p>Дата публикации: {{ blog.created_at|date:"d M Y" }}</p>
+    <p>Колличество просмотров: {{ blog.number_of_views }}</p>
+    <p>ID: {{ blog.pk }}</p>
+    <a href="{% url 'myblog:blog_create' %}" class="btn btn-secondary">Редактировать</a>
+    <a href="{% url 'myblog:blog_delete' blog.pk %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'myblog:blogs_list' %}" class="btn btn-primary">Вернуться к списку</a>
+</div>
+{% endblock %}
