@@ -60,4 +60,4 @@ class ProductForm(forms.ModelForm):
 class ProductModeratorForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['publication_status']
+        fields = ['publication_status',]

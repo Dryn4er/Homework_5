@@ -10,6 +10,7 @@
         <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:contacts' %}">Контакты</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:product_form' %}">Создать продукт</a>
         <a class="p-2 btn btn-outline-primary" href="{% url 'blog:blogs_list' %}">Блог</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:category_list' %}">Категории</a>
         {% if user.is_authenticated %}
         <form method="post" action="{% url 'users:logout' %}" style="display: inline">
             {% csrf_token %}
